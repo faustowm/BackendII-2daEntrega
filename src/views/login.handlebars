@@ -1,0 +1,70 @@
+<div class="auth-container">
+  <h1 class="tituloLog">Iniciar Sesión</h1>
+  <form id="login-form" class="auth-form">
+    <div class="form-group">
+      <label for="email" class="sr-only">Email</label>
+      <input type="email" id="email" name="email" placeholder="Email" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="password" class="sr-only">Contraseña</label>
+      <input type="password" id="password" name="password" placeholder="Contraseña" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+  </form>
+  <p class="noAcc">¿No tienes una cuenta?</p>  
+  <p class="noAcc2"><a href="/register">Regístrate aquí</a></p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            try {
+                const response = await fetch('/api/sessions/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (typeof checkAuth === 'function') {
+                        await checkAuth();
+                    }
+                    window.location.href = data.redirectUrl; 
+                } else {
+                    const errorData = await response.text();
+                    console.error('Error response:', errorData);
+                    let errorMessage;
+                    try {
+                        const errorJson = JSON.parse(errorData);
+                        errorMessage = errorJson.message || 'Error en el inicio de sesión';
+                    } catch (jsonError) {
+                        errorMessage = 'Error en el inicio de sesión';
+                    }
+                    if (typeof peaceAlert !== 'undefined' && peaceAlert.error) {
+                        await peaceAlert.error(errorMessage);
+                    } else {
+                        alert(errorMessage);
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                if (typeof peaceAlert !== 'undefined' && peaceAlert.error) {
+                    await peaceAlert.error('Error en el inicio de sesión');
+                } else {
+                    alert('Error en el inicio de sesión');
+                }
+            }
+        });
+    } else {
+        console.error('El formulario de inicio de sesión no se encontró en el DOM');
+    }
+});
+</script>
