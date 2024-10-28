@@ -1,14 +1,11 @@
 import express from "express";
 import passport from "passport";
-
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import path from 'path';
-
 import { engine } from "express-handlebars";
 import { Server } from "socket.io";
 import config from './config/config.js';
-
 import cartRouter from "./routes/cart.routes.js";
 import userRouter from "./routes/user.routes.js";
 import orderRouter from "./routes/order.routes.js";
