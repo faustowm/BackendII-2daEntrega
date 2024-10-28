@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
 export const sendEmail = async (to, subject, html) => {
     try {
         const info = await transporter.sendMail({
-            from: '"Guitar Store" <noreply@guitarstore.com>',
+            from: '"Inzara Aromas" <noreply@inzaraaromas.com>',
             to,
             subject,
             html
@@ -26,9 +26,9 @@ export const sendEmail = async (to, subject, html) => {
 };
 
 export const sendWelcomeEmail = async (user) => {
-    const subject = 'Bienvenido a Guitar Store';
+    const subject = 'Bienvenido a Inzara Aromas';
     const html = `
-    <h1>Bienvenido a Guitar Store, ${user.name}!</h1>
+    <h1>Bienvenido a Inzara Aromas ${user.name}!</h1>
     <p>Gracias por registrarte en nuestra tienda. Esperamos que disfrutes de nuestros productos.</p>
     <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
 `;
@@ -36,7 +36,7 @@ export const sendWelcomeEmail = async (user) => {
 };
 
 export const sendOrderConfirmationEmail = async (user, order) => {
-    const subject = 'Confirmación de Orden - Guitar Store';
+    const subject = 'Confirmación de Orden - Inzara Aromas';
     const html = `
     <h1>Gracias por tu compra, ${user.name}!</h1>
     <p>Tu orden #${order.code} ha sido confirmada.</p>

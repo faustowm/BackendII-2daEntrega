@@ -1,71 +1,120 @@
-# InzaraAromas - Backend2 (1er Entrega) 🌟
+Inzara Aromas - Backend II (Entrega 4) 🌸🕯️
+Programación Backend II: Diseño y Arquitectura Backend - CODERHOUSE
 
-## Descripción del Proyecto 📜
+Descripción del proyecto
+Este proyecto es la cuarta entrega del curso de Backend, en la cual se han integrado nuevas funcionalidades para Inzara Aromas , una tienda online especializada en velas aromáticas . Se han optimizado aspectos de seguridad, autenticación, manejo de sesiones y carritos de compra, brindando una experiencia sólida y acogedora para el usuario.
 
-InzaraAromas 🕯️ es una encantadora aplicación de comercio electrónico que invita a los usuarios a sumergirse en el mundo de las Velas Aromáticas 🌸. Este proyecto es la cuarta entrega de nuestro viaje en el curso de Backend, evolucionando hacia Backend 2. En esta fragante versión, hemos incorporado características avanzadas que incluyen una autenticación segura 🔒, un manejo delicado de sesiones 📅 y una gestión intuitiva de carritos de compra 🛒, todo para ofrecer una experiencia envolvente y placentera.
+Aplicación de Comercio Electrónico: Inzara Aromas
+Inzara Aromas ofrece una plataforma online donde los amantes de las velas aromáticas pueden explorar y adquirir productos personalizados.
 
----
+Estructura del proyecto
+La aplicación sigue una arquitectura MVC (Modelo-Vista-Controlador), complementada con capas adicionales para la gestión de datos y lógica de negocio. Aquí se muestra una visión general de los directorios principales:
 
-## Características Principales ✨
+📂 src/ : Directorio raíz del código fuente.
+📂 controladores/ : Controladores de lógica de negocio.
+📂 dao/ : Capa de acceso a datos (DAO).
+📂 db/ : Configuración de base de datos.
+📂 modelos/ : Definición de esquemas de Mongoose.
+📂 repositories/ : Implementación de patrones de repositorio.
+📂 dto/ : Objetos de Transferencia de Datos (DTO).
+📂 middlewares/ : Autenticación y autorizaciones personalizadas.
+📂 public/ : Recursos estáticos (CSS, JavaScript, imágenes).
+📂rutas/ : Rutas de Express para APIs y vistas.
+📂 servicios/ : Lógica de negocio central.
+📂 utils/ : Funciones de utilidad y ayudantes.
+📂 views/ : Plantillas Manillar para vistas del cliente.
+Características principales
+🌸 Modelo de Usuario Mejorado
+Campos como first_name, last_name, email, age, password, cart, y role.
+Carrito generó automáticamente al registrarse.
+Contraseñas encriptadas con bcrypt para seguridad.
+🔒 Autenticación y Autorización
+Autenticación basada en JWT (JSON Web Tokens).
+Rutas segregadas para usuarios autenticados y API.
+🕯️ Gestión de Productos (Velas Aromáticas)
+CRUD completo para productos, con soporte de paginación y filtrado.
+Administración de acciones desde el panel de administración.
+🛒 Carrito de compras
+Funcionalidad para agregar, eliminar y modificar productos en el carrito.
+Cálculo total en tiempo real para mejorar la experiencia de compra.
+🧾 Procesamiento de Pedidos y Generación de Tickets
+Generación de tickets de compra con detalles de productos adquiridos.
+📋 Panel de Administración para Stock y Productos
+Solo administradores pueden gestionar productos y stock.
+Sistema de autorización basado en roles ( usuarioy administrador).
+Puntos finales Clave
+Administración
 
-### 1. Modelo de Usuario Mejorado 👤
-- **Campos**: `first_name`, `last_name`, `email`, `age`, `password`, `cart`, `role`.
-- Generación automática de carrito al registrarse.
+GET /admin/stock/update: Actualizar stock de productos.
+GET /admin/categories:Obtener categorías.
+Carrito
 
-### 2. Seguridad Mejorada 🔒
-- Encriptación de contraseñas utilizando **bcrypt**.
+POST /api/carts/add: Agregar artículo al carrito.
+DELETE /api/carts/remove/{itemId}: Quitar artículo del carrito.
+GET /api/carts/count: cantidad Obtener de artículos en el carrito.
+PUT /api/carts/update/{itemId}: Actualizar cantidad en el carrito.
+DELETE /api/carts/clear: Vaciar carrito.
+POST /api/carts/finalize:Finalizar compra.
+GET /api/carts/{cId}: Obtener carrito de usuario.
+Productos (Velas)
 
-### 3. Autenticación Avanzada 🛡️
-- Implementación de estrategias de **Passport**.
-- Sistema de login con **JWT** (JSON Web Tokens).
+GET /api/products: Obtener todos los productos.
+GET /api/products/{pid}:Obtener un producto por ID.
+PUT /api/products/{pid}:Actualizar un producto.
+DELETE /api/products/{pid}:Eliminar un producto.
+Sesión de usuario
 
-### 4. Manejo de Sesiones 📅
-- Estrategia "current" para extraer y validar tokens de cookies.
-- Rutas separadas para validación de usuarios en web y API.
+POST /api/sessions/login:Iniciar sesión.
+POST /api/sessions/logout:Cerrar sesión.
+Usuarios
 
-### 5. Gestión de Carritos 🛒
-- Modelo de carrito con campos `id` y `productos`.
-- Funcionalidades para agregar, eliminar y obtener productos del carrito de un usuario.
+POST /api/users/register:Registrar un nuevo usuario.
+GET /api/users/profile:Obtener perfil de usuario.
+PUT /api/users/profile: Actualizar perfil de usuario.
+DELETE /api/users:Eliminar cuenta de usuario.
+Tecnologías utilizadas
+Backend : Node.js con Express.js.
+Base de datos : MongoDB, con Mongoose como ODM.
+Autenticación : Passport.js y JWT.
+Vistas : Manillar para HTML dinámico.
+Seguridad : Bcrypt para encriptación de contraseñas.
+Tiempo Real : Socket.io para comunicación en tiempo real.
+Manejo de Sesiones : express-session y cookie-parser.
+Variables de entorno : dotenv para configuración de entornos.
+Instalación y configuración
+Clonar el repositorio
 
----
+intento
 
-## Endpoints 🔗
+Copiar código
+git clone https://github.com/faustowm/InzaraAromas.git
+Instalar dependencias
 
-### Sesiones y Autenticación
-- `POST /api/sessions/register`: Registro de nuevos usuarios.
-- `POST /api/sessions/login`: Inicio de sesión.
-- `POST /api/sessions/logout`: Cierre de sesión.
-- `GET /api/sessions/current`: Obtener información del usuario actual (versión web).
-- `GET /api/sessions/current-api`: Obtener información del usuario actual (requiere bearer token).
+intento
 
-### Carritos
-- `GET /api/carts/:cid`: Obtener un carrito específico (requiere bearer token).
-- `GET /api/carts`: Listar todos los carritos (requiere bearer token).
-- `DELETE /api/carts/:cid`: Eliminar un carrito (requiere bearer token).
-- `POST /api/carts/:cid/products/:pid`: Agregar un producto a un carrito (requiere bearer token).
-- `DELETE /api/carts/:cid/products/:pid`: Eliminar un producto de un carrito (requiere bearer token).
+Copiar código
+cd InzaraAromas
+npm install
+Configurar variables de entorno : Crear un archivo .enven la raíz del proyecto y agregar:
 
-### Productos
-- `GET /api/products`: Listar todos los productos.
-- `GET /api/products/:pid`: Obtener un producto específico.
-- `PUT /api/products/:pid`: Actualizar un producto (requiere bearer token).
+texto sin formato
 
-### Usuarios
-- `DELETE /api/users/`: Eliminar un usuario (requiere bearer token).
+Copiar código
+MONGODB_URI=tu_uri_de_mongodb
+JWT_SECRET=tu_secreto_jwt
+SESSION_SECRET=tu_secreto_de_sesion
+PORT=8080
+Iniciar el servidor
 
----
+intento
 
-## Tecnologías Utilizadas 💻
-- **Node.js**
-- **Express.js**
-- **MongoDB** con Mongoose
-- **Passport.js**
-- **JWT** para autenticación
-- **bcrypt** para encriptación
-- **Handlebars** para vistas
-- **Socket.io** para comunicación en tiempo real
-- **dotenv** para manejo de variables de entorno
-- **cookie-parser** para manejo de cookies
-- **express-session** para manejo de sesiones
+Copiar código
+npm run dev
+Scripts Útiles 🛠️
+Asignar rol de administrador
+intento
 
----
+Copiar código
+node src/utils/agregarAdministrador.js <userId>
+Explora y disfruta
+Inzara Aromas te espera en http ://localhost :8080 para una experiencia aromática única y envolvente. ¡Disfruta de tu viaje en el mundo de las velas! 🌸🕯️

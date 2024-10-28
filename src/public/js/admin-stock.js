@@ -1,5 +1,4 @@
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const categorySelect = document.getElementById('categorySelect');
     const productList = document.getElementById('productList');
@@ -99,16 +98,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ stock: newStock }),
             });
             if (response.ok) {
-                alert('Stock actualizado correctamente');
                 const updatedProduct = await response.json();
-                showProductDetails(updatedProduct);
-                updateProductListItem(updatedProduct);
+                
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Stock actualizado correctamente 🎉',
+                    icon: 'success',
+                    confirmButtonText: '¡Genial!',
+                    confirmButtonColor: '#6c63ff', 
+                    backdrop: true, 
+                    allowOutsideClick: false 
+                }).then(() => {
+                    showProductDetails(updatedProduct);
+                    updateProductListItem(updatedProduct);
+                });
             } else {
                 throw new Error('Error al actualizar el stock');
             }
-        } catch (error) {
-            showErrorMessage('Error al actualizar el stock');
-        }
+            
+            } catch (error) {
+                Swal.fire({
+                    title: '¡Ups!',
+                    text: 'Error al actualizar el stock 😞',
+                    icon: 'error',
+                    confirmButtonText: 'Cerrar',
+                    confirmButtonColor: '#d33', 
+                    backdrop: true,
+                    allowOutsideClick: false 
+                });
+            }
+            
     });
 
     cancelUpdateBtn.addEventListener('click', () => {

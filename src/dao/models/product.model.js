@@ -39,7 +39,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
         // Puedes agregar aquí las categorías que desees
-        enum: ['Electric Guitar', 'Bass', 'Drums', 'Keyboards']
+        enum: ['Exoticas', 'Fogozas', 'Rupturas', 'Atraccion']
     }
 }, { timestamps: true });
 

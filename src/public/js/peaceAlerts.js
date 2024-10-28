@@ -1,10 +1,10 @@
 const peaceAlert = {
     success: (message) => {
         return Swal.fire({
-            title: '¡Excelente!',
+            title: '¡Genial! 🎉',
             text: message,
             icon: 'success',
-            confirmButtonText: 'Continuar',
+            confirmButtonText: '¡Vamos! 🚀',
             background: '#ECF0F1',
             color: '#2C3E50',
             iconColor: '#27AE60',
@@ -16,10 +16,10 @@ const peaceAlert = {
     },
     error: (message) => {
         return Swal.fire({
-            title: 'Oops...',
+            title: '¡Ay no! 😱',
             text: message,
             icon: 'error',
-            confirmButtonText: 'Entendido',
+            confirmButtonText: 'Entendido, lo intentaré de nuevo.',
             background: '#ECF0F1',
             color: '#2C3E50',
             iconColor: '#E74C3C',
@@ -31,12 +31,12 @@ const peaceAlert = {
     },
     confirm: (message) => {
         return Swal.fire({
-            title: '¿Estás seguro?',
+            title: '¿Listo para la acción? 🤔',
             text: message,
             icon: 'question',
             showCancelButton: true,
-            confirmButtonText: 'Sí, continuar',
-            cancelButtonText: 'Cancelar',
+            confirmButtonText: '¡Sí, claro! 🥳',
+            cancelButtonText: 'Nah, mejor no...',
             background: '#ECF0F1',
             color: '#2C3E50',
             iconColor: '#F39C12',

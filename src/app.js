@@ -1,24 +1,28 @@
 import express from "express";
 import passport from "passport";
-import cookieParser from "cookie-parser";
+
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import initializePassport from "./config/passport.config.js";
+import path from 'path';
+
 import { engine } from "express-handlebars";
 import { Server } from "socket.io";
 import config from './config/config.js';
-import productsRouter from "./routes/products.routes.js";
+
 import cartRouter from "./routes/cart.routes.js";
 import userRouter from "./routes/user.routes.js";
 import orderRouter from "./routes/order.routes.js";
 import viewsRouter from "./routes/views.routes.js";
+import cookieParser from "cookie-parser";
 import sessionRouter from "./routes/session.routes.js";
 import adminRouter from "./routes/admin.routes.js";
 import { errorHandler, notFoundHandler } from "./middlewares/error.middleware.js";
+import initializePassport from "./config/passport.config.js";
+import productsRouter from "./routes/products.routes.js";
 import { checkUserSession } from "./middlewares/auth.middleware.js";
 import ProductManager from './dao/db/productManagerDb.js';
 import { fileURLToPath } from 'url';
-import path from 'path';
+
 import "./db.js";
 import bodyParser from 'body-parser';
 import { repairCarts } from './utils/cartRepair.js';
